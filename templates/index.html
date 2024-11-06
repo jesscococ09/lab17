@@ -5,6 +5,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>CST 205 Playlist</title>
       {{ bootstrap.load_css() }}
+      <style> .submit-btn { display: flex; justify-content: center; align-items: center; } 
+      </style>
   </head>
 <body>
     <div class="container mb-4">
@@ -16,14 +18,12 @@
             {{ form.csrf_token }}
             {{ form.song_title.label }} 
             {{ form.song_title(size=32) }}
-            <input type="submit" value="Submit">
-          </form>
             <h2 class="card-title">Add your genre</h2>
-            <form method="POST" action="/">
-            {{ formg.csrf_token }}
             {{ formg.genre_fill.label }} 
             {{ formg.genre_fill(size=32) }}
-            <input type="submit" value="Submit">
+            <div class="submit-btn">
+                <input type="submit" value="Submit">
+            </div>
           </form>
         </div>
       </div>

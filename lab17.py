@@ -16,7 +16,7 @@ class Playlist(FlaskForm):
     )
 class Genre(FlaskForm):
     genre_fill = StringField(
-        'genre', 
+        'Genre', 
         validators=[DataRequired()]
     )
 
@@ -34,17 +34,15 @@ def store_genre(my_genre):
         date= datetime.today()
     ))
 
-@app.route('/', methods=('GET', 'POST'))
+@app.route('/', methods=['GET', 'POST'])
 def index():
     form = Playlist()
-    formg= Genre()
-    if form.validate_on_submit():
+    formg = Genre()
+    if form.validate_on_submit() and formg.validate_on_submit():
         store_song(form.song_title.data)
-        return redirect('/view_playlist')
-    if formg.validate_on_submit():
         store_genre(formg.genre_fill.data)
         return redirect('/view_playlist')
-    return render_template('index.html', form=form, form=formg)
+    return render_template('index.html', form=form, formg=formg)
 
 @app.route('/view_playlist')
 def vp():
